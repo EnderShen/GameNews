@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "561331234119",
+    "firebase_url": "https://gamesale-1441f.firebaseio.com",
+    "project_id": "gamesale-1441f",
+    "storage_bucket": "gamesale-1441f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561331234119:android:487bcf30534c20b8d6d862",
+        "android_client_info": {
+          "package_name": "com.example.gamesale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561331234119-ggscqe3m0f53s4bm3ahutf6klghr5795.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj45BydEhedzR32kQ42t6-MPr16qOIFHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561331234119-ggscqe3m0f53s4bm3ahutf6klghr5795.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
