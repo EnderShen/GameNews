@@ -1,4 +1,4 @@
-package com.example.gamesale;
+package com.example.gameNews;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,44 +7,48 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gamesale.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
 
-    EditText mEmail,mPassword;
-    Button mLoginBt;
-    TextView mCreateAccText;
+
+public class RegisterAcitvity extends AppCompatActivity {
+
+    EditText mFullName,mEmail,mPassword;
+    Button mRegisterBt;
+    TextView mLogintext;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.register_acitvity);
 
-        mPassword = findViewById(R.id.logPassword);
-        mEmail = findViewById(R.id.logEmail);
-        mLoginBt = findViewById(R.id.LoginBt);
-        mCreateAccText = findViewById(R.id.registerText);
+
+        mFullName = findViewById(R.id.Ename);
+        mPassword = findViewById(R.id.Epassword);
+        mEmail = findViewById(R.id.EEmail);
+        mRegisterBt = findViewById(R.id.RegistBt);
+        mLogintext = findViewById(R.id.Clogin);
+
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.logprogresbar);
+        progressBar = findViewById(R.id.prograssbar);
 
         if(fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
         }
-        mLoginBt.setOnClickListener(new View.OnClickListener() {
+
+        mRegisterBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
@@ -64,32 +68,31 @@ public class LoginActivity extends AppCompatActivity {
                     mPassword.setError("Password must >= 6 characters");
                     return;
                 }
+
                 progressBar.setVisibility(View.VISIBLE);
 
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterAcitvity.this,"User Created",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             finish();
+
                         }else{
-                            Toast.makeText(LoginActivity.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterAcitvity.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
             }
-
         });
 
-        mCreateAccText.setOnClickListener(new View.OnClickListener() {
+        mLogintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RegisterAcitvity.class));
-                finish();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
             }
         });
     }
-
 }

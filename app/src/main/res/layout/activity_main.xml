@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.gameNews.MainActivity">
 
 
     <Button
@@ -31,9 +31,10 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_bar" />
 
-    <fragment
+
+    <FrameLayout
         android:id="@+id/fragment_container"
-        android:name="com.example.gamesale.HomeFragment"
+        android:name="com.example.gameNews.HomeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/logoutBt"
@@ -41,7 +42,10 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
+    </FrameLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

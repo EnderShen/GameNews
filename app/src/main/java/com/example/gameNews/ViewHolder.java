@@ -1,4 +1,4 @@
-package com.example.gamesale;
+package com.example.gameNews;
 
 import android.content.Context;
 import android.view.View;
@@ -8,23 +8,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gamesale.R;
 import com.squareup.picasso.Picasso;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 
-    View mview;
-
+    View mView;
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
-        mview = itemView;
+        mView = itemView;
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 mClicklistener.onItemClick(view,getAdapterPosition());
-
             }
         });
 
@@ -40,12 +39,12 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public void setDetail(Context context,String title,String image){
 
-        TextView mtitle = mview.findViewById(R.id.rTitleText);
-        ImageView mimage = mview.findViewById(R.id.rImageView);
+        TextView mTitle = mView.findViewById(R.id.rTitleText);
+        ImageView mImage = mView.findViewById(R.id.rImageView);
 
-        mtitle.setText(title);
+        mTitle.setText(title);
 
-        Picasso.get().load(image).into(mimage);
+        Picasso.get().load(image).into(mImage);
     }
 
     private  ViewHolder.ClickListener mClicklistener;

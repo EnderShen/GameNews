@@ -1,10 +1,10 @@
-package com.example.gamesale;
+package com.example.gameNews;
 
-public class Model {
+public class RecyclerViewModel {
     String image;
     String title;
 
-    public Model(){}
+    public RecyclerViewModel(){}
 
     public String getImage() {
         return image;

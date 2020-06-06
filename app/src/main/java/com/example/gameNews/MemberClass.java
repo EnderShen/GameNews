@@ -1,4 +1,4 @@
-package com.example.gamesale;
+package com.example.gameNews;
 
 public class MemberClass {
 
