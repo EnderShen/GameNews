@@ -1,17 +1,18 @@
 package com.example.gameNews;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
@@ -21,7 +22,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment{
         mFireBaseRecyclerAdapter = new FirebaseRecyclerAdapter<RecyclerViewModel, ViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull RecyclerViewModel model) {
-                viewHolder.setDetail(getActivity().getApplicationContext(),model.getTitle(),model.getImage());
+                viewHolder.setDetail(getActivity().getApplicationContext(),model.getTitle(),model.getImage(),model.getNews());
             }
 
             @NonNull
@@ -75,7 +75,14 @@ public class HomeFragment extends Fragment{
                 viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(getActivity(), "111", Toast.LENGTH_SHORT).show();
+                        DetailFragment detailFragment = new DetailFragment();
+                        Bundle detail = new Bundle();
+                        detail.putString("title",mFireBaseRecyclerAdapter.getItem(position).getTitle());
+                        detail.putString("image",mFireBaseRecyclerAdapter.getItem(position).getImage());
+                        detail.putString("news",mFireBaseRecyclerAdapter.getItem(position).getNews());
+                        detailFragment.setArguments(detail);
+                        FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container,detailFragment).addToBackStack(null).commit();
                     }
 
                     @Override
@@ -90,7 +97,6 @@ public class HomeFragment extends Fragment{
         mFireBaseRecyclerAdapter.startListening();
         mRecyclerView.setAdapter(mFireBaseRecyclerAdapter);
     }
-
     public void onStart(){
         super.onStart();
 
@@ -98,7 +104,6 @@ public class HomeFragment extends Fragment{
             mFireBaseRecyclerAdapter.startListening();
         }
     }
-
     public void onStop(){
         super.onStop();
         mFireBaseRecyclerAdapter.stopListening();
