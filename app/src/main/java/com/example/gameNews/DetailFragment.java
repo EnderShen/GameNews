@@ -1,6 +1,7 @@
 package com.example.gameNews;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,9 @@ public class DetailFragment extends Fragment {
         news = view.findViewById(R.id.NewsText);
 
         title.setText(getArguments().getString("title"));
-        imageurl = getArguments().getString("image");
         news.setText(getArguments().getString("news"));
+        news.setMovementMethod(new ScrollingMovementMethod());
+        imageurl = getArguments().getString("image");
         Picasso.get().load(imageurl).into(imageView);
         return view;
     }

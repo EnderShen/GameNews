@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="390dp"
-        android:layout_height="wrap_content"
+        android:layout_height="121dp"
         android:orientation="horizontal">
 
 
@@ -52,7 +52,7 @@
             app:layout_constraintHorizontal_bias="0.757"
             app:layout_constraintStart_toEndOf="@+id/rImageView"
             app:layout_constraintTop_toBottomOf="@+id/rTitleText"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.588" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

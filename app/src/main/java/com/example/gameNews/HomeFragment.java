@@ -29,12 +29,12 @@ import java.util.List;
 
 public class HomeFragment extends Fragment{
 
-    LinearLayoutManager mLinearLayoutManager;
-    RecyclerView mRecyclerView;
-    DatabaseReference reference;
+    private LinearLayoutManager mLinearLayoutManager;
+    private RecyclerView mRecyclerView;
+    private DatabaseReference reference;
 
-    FirebaseRecyclerAdapter<RecyclerViewModel,ViewHolder> mFireBaseRecyclerAdapter;
-    FirebaseRecyclerOptions<RecyclerViewModel> options;
+    private FirebaseRecyclerAdapter<RecyclerViewModel,ViewHolder> mFireBaseRecyclerAdapter;
+    private FirebaseRecyclerOptions<RecyclerViewModel> options;
 
 
     @Override
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment{
         mFireBaseRecyclerAdapter.stopListening();
     }
 
-    public void imageSlipper(View v){
+    private void imageSlipper(View v){
         ImageSlider imageSlider =v.findViewById(R.id.slider);
         List<SlideModel> slideModels = new ArrayList<>();
 
