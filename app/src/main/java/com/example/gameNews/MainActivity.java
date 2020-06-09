@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_list:
-                            selectedFragment = new TrailerFragment();
+                            selectedFragment = new GameReviewFragment();
                             break;
                         case R.id.nav_location:
                             selectedFragment = new LocationFragment();
