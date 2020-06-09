@@ -16,8 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_list:
-                            selectedFragment = new ProfuctsFragment();
+                            selectedFragment = new TrailerFragment();
                             break;
                         case R.id.nav_location:
                             selectedFragment = new LocationFragment();
