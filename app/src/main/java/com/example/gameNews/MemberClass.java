@@ -2,7 +2,7 @@ package com.example.gameNews;
 
 public class MemberClass {
 
-    String title,image;
+    private String title,image;
 
     public MemberClass () { }
 

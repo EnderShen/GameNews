@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.gamesale.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -21,9 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class LocationFragment extends Fragment
 implements OnMapReadyCallback {
 
-    GoogleMap mMap;
-    MapView mMapView;
-    View view;
+    public GoogleMap mMap;
+    private MapView mMapView;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

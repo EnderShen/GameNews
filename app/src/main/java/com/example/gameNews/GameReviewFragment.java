@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.gamesale.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -45,7 +44,7 @@ public class GameReviewFragment extends Fragment {
     private ProgressBar mprogressBar;
 
     private Uri mImageuri;
-    Uri mUri;
+
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;

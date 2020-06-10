@@ -10,14 +10,13 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.gamesale.R;
 import com.squareup.picasso.Picasso;
 
 public class DetailFragment extends Fragment {
 
-    TextView title,news;
-    String imageurl;
-    ImageView imageView;
+    private TextView title,news;
+    private String imageurl;
+    private ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

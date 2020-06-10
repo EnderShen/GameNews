@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.gamesale.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +52,7 @@ public class HomeFragment extends Fragment{
 
 
         showRecyclerViewData();
-        imageSlipper(v);
+        imageSlider(v);
         return v;
     }
 
@@ -109,13 +108,13 @@ public class HomeFragment extends Fragment{
         mFireBaseRecyclerAdapter.stopListening();
     }
 
-    private void imageSlipper(View v){
+    private void imageSlider(View v){
         ImageSlider imageSlider =v.findViewById(R.id.slider);
         List<SlideModel> slideModels = new ArrayList<>();
 
         slideModels.add(new SlideModel(R.drawable.ign,"IGN: #1 destination for all video game news"));
         slideModels.add(new SlideModel(R.drawable.game,"See game release dates"));
-        slideModels.add(new SlideModel(R.drawable.watchdog));
+        slideModels.add(new SlideModel(R.drawable.ebgames,"Game sale store"));
 
         imageSlider.setImageList(slideModels,true);
 
@@ -130,8 +129,11 @@ public class HomeFragment extends Fragment{
                     Intent Browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mcvuk.com/game-release-dates/"));
                     startActivity(Browser);
                 }
+                if(i==2){
+                    Intent Browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ebgames.com.au"));
+                    startActivity(Browser);
+                }
             }
         });
     }
-
 }
