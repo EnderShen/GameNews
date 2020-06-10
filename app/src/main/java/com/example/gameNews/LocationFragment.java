@@ -49,7 +49,7 @@ implements OnMapReadyCallback {
         mMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(-31,151)).title("1").snippet("2222"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(-31,151)).title("EB GAMES").snippet("2222"));
         CameraPosition Liberty = CameraPosition.builder().target(new LatLng(-31,151)).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
     }

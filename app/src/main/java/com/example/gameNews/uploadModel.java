@@ -15,6 +15,10 @@ public class uploadModel {
             mTitle = "no Title";
         }
 
+        if(comments.trim().equals("")){
+            comments= "no comments";
+        }
+
         this.mTitle = mTitle;
         this.mImageUri = mImageUri;
         this.mComments = comments;
