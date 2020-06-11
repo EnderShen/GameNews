@@ -35,6 +35,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class GameReviewFragment extends Fragment {
 
+    //fields
     private static final int PICK_IMAGE_REQUEST = 1;
     private Button mButtonChooseImage;
     private Button mButtonUpload;
@@ -42,20 +43,18 @@ public class GameReviewFragment extends Fragment {
     private ImageView mImageView;
     private TextView mShowComments;
     private ProgressBar mprogressBar;
-
     private Uri mImageuri;
-
-
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
-
     private StorageTask mUploadTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //Return this View later in this fragment
         View v = inflater.inflate(R.layout.fragment_review, container, false);
 
+        //signed to each view
         mButtonChooseImage = v.findViewById(R.id.ChooseBt);
         mButtonUpload = v.findViewById(R.id.button_upload);
         mEditTitleName= v.findViewById(R.id.WriteTitle);
@@ -64,9 +63,11 @@ public class GameReviewFragment extends Fragment {
         mShowComments = v.findViewById(R.id.text_view_show_uploads);
         mprogressBar = v.findViewById(R.id.progress_bar);
 
+        //set the database reference to correct path on firebase
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
+        //set click listener for choose image button
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +77,7 @@ public class GameReviewFragment extends Fragment {
             }
         });
 
+        //set click listener for upload comments button
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +91,7 @@ public class GameReviewFragment extends Fragment {
             }
         });
 
+        //set click listener for show other people's comments button
         mShowComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +101,7 @@ public class GameReviewFragment extends Fragment {
         return v;
     }
 
+    //void method for open  file
     private  void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -105,6 +109,7 @@ public class GameReviewFragment extends Fragment {
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
     }
 
+    //Override void method for get the image
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,14 +122,13 @@ public class GameReviewFragment extends Fragment {
         }
     }
 
-
-
+    //Void method to upload the file
     private  void uploadFile(){
 
         if(mImageuri != null){
             StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()+"."+"jpg");
 
-
+            //if upload successful run this
             mUploadTask=fileRef.putFile(mImageuri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -135,7 +139,9 @@ public class GameReviewFragment extends Fragment {
                                 public void run() {
                                     mprogressBar.setProgress(0);
                                 }
-                            },1000);
+                            },2000);
+
+                            // get the image uri and pass the data from database.
                             final Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
                             firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
@@ -160,16 +166,18 @@ public class GameReviewFragment extends Fragment {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                            //set value to progress bar
                             double progress = (100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
                             mprogressBar.setProgress((int) progress);
                         }
                     });
         }else {
+            //if image is not selected show this toast
             Toast.makeText(getActivity(), "No image selected", Toast.LENGTH_SHORT).show();
         }
     }
 
-
+    // open other fragment
     public void OpenCommentFragment(){
         CommentsFragment commentsFragment = new CommentsFragment();
         FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();

@@ -16,14 +16,17 @@ import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ImageViewHolder> {
 
+    //fields
     private Context mContext;
     private List<uploadModel> mUploads;
 
+    // Adapter constructor
     public CommentsAdapter(Context context, List<uploadModel> uploads){
         mContext = context;
         mUploads = uploads;
     }
 
+    // ViewHolder
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,11 +45,13 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ImageV
 
     }
 
+    //Count how many items in adapter
     @Override
     public int getItemCount() {
         return mUploads.size();
     }
 
+    // RecyclerView adapter class signed to each view
     public class ImageViewHolder extends RecyclerView.ViewHolder{
         public ImageView imageView;
         public TextView textViewTitle;
